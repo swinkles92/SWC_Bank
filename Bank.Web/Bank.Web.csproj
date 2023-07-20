@@ -5,7 +5,27 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
+  <ItemGroup>
+      <Using Include="System.Console" Static="true" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\" />
+    <Folder Include="Pages\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Pages\" />
+    <None Remove="Pages\index.html" />
+    <None Remove="Pages\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\EmptyHtmlFile.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+  <PropertyGroup>
+      <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
 </Project>
