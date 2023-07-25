@@ -19,9 +19,18 @@ public class DbHelpers
 
 		return sqlite_conn;
 	}
-	public void ReadData()
+	public void ReadData(SqliteConnection sqlite_conn)
 	{
-
-	}
+        SqliteDataReader sqlite_datareader;
+        SqliteCommand sqlite_cmd = sqlite_conn.CreateCommand();
+        sqlite_cmd.CommandText = "SELECT * FROM users";
+        sqlite_datareader = sqlite_cmd.ExecuteReader();
+        while (sqlite_datareader.Read())
+        {
+            string reader = sqlite_datareader.GetString(0);
+            WriteLine(reader);
+        }
+        sqlite_conn.Close();
+    }
 }
 

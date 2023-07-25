@@ -37,4 +37,16 @@ public class DbTests
             "Data Source = " +
             "/Users/samuelwinkles/Documents/CSharpPrograms/swcbank.db;"));
     }
+
+    /*
+     * ReadData() method tests
+     */
+
+    [Fact]
+    public void ReadDataTest()
+    {
+        DbHelpers dbHelpers = new DbHelpers();
+        var sqlite_conn = dbHelpers.CreateConnection();
+        dbHelpers.ReadData(sqlite_conn);
+    }
 }

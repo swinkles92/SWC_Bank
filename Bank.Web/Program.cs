@@ -1,4 +1,21 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿
+/*
+ * To add a user
+var context = new Bank.SwcbankContext();
+var user = new Bank.User()
+{
+    FirstName = "Sam",
+    LastName = "Winkles",
+    AcctOpenDate = DateTime.Today.ToLongDateString(),
+};
+context.Add(user);
+context.SaveChanges();
+*/
+
+var context = new Bank.SwcbankContext();
+context.Remove(context.Users.Single(a => a.Id == 1));
+context.SaveChanges();
+/*var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 var app = builder.Build();
 
@@ -15,4 +32,4 @@ app.MapGet("/hello", () => "Hello World!");
 
 app.Run();
 
-WriteLine("Web server has stopped.");
+WriteLine("Web server has stopped.");*/

@@ -24,6 +24,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Pages\Locations.cshtml.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bank.EntityFramework\Bank.EntityModels.Sqlite.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
       <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
