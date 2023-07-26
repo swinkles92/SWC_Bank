@@ -11,6 +11,7 @@
   <ItemGroup>
     <Folder Include="Pages\" />
     <Folder Include="Pages\Shared\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Pages\" />
@@ -19,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\EmptyHtmlFile.html" />
+    <Content Remove="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />

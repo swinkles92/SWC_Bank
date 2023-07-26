@@ -49,4 +49,13 @@ public class DbTests
         var sqlite_conn = dbHelpers.CreateConnection();
         dbHelpers.ReadData(sqlite_conn);
     }
+
+    [Fact]
+    public void DatabaseConnectTest()
+    {
+        using(SwcbankContext db = new())
+        {
+            Assert.True(db.Database.CanConnect());
+        }
+    }
 }

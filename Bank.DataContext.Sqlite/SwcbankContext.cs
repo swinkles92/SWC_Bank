@@ -25,8 +25,26 @@ public partial class SwcbankContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder
         optionsBuilder)
-        => optionsBuilder.UseSqlite("Filename=/Users/samuelwinkles" +
-            "/Documents/CSharpPrograms/swcbank.db");
+    {
+        if(!optionsBuilder.IsConfigured)
+        {
+            string dir = Environment.CurrentDirectory;
+            string path = string.Empty;
+
+            if(dir.EndsWith("net7.0"))
+            {
+                // Running in the
+                // <project>\bin\<Debug/Release>\net7.0 directory.
+                path = Path.Combine("..", "..", "..", "..", "swcbank.db");
+            }
+            else
+            {
+                // Running in the <project> directory.
+                path = Path.Combine("..", "swcbank.db");
+            }
+            optionsBuilder.UseSqlite($"Filename={path}");
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

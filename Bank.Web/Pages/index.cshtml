@@ -5,17 +5,21 @@
     public void OnGet()
     {
         ViewData["Title"] = "SWC Bank";
-        Model.DayName = DateTime.Now.ToString("dddd");
+        Model.DayName = DateTime.Now.ToString("D");
     }
 }
+    <body style="background-color:lightcyan;"></body>
     <div class="container">
-        <div class="jumbotron">
+        <div class="jumbotron" style="text-align: center;">
+            <img width="600" height="400" src="images/SandiaLogo.jpg" alt="Professional shot of the Sandias" />
             <h1 class="display-3">Welcome to SWC Bank</h1>
             <p class="lead">Providing banking services since 2023.</p>
             <hr />
-            <p>It's @Model.DayName! We service clients from all over New Mexico!</p>
+            <p>Today is @Model.DayName!</p>
+            <p>Please select from one of the options below:</p>
             <p>
-                <a class="btn btn-primary" href="locations">Learn more about our locations.</a>
+                <a class="btn btn-primary">User Login</a>
+                <a class="btn btn-primary" href="locations">Branch Locations</a>
             </p>
         </div>
     </div>

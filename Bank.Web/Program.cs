@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 /*
  * To add a user
 var context = new Bank.SwcbankContext();
@@ -12,24 +13,57 @@ context.Add(user);
 context.SaveChanges();
 */
 
+/*
+ * To remove a user
 var context = new Bank.SwcbankContext();
 context.Remove(context.Users.Single(a => a.Id == 1));
 context.SaveChanges();
-/*var builder = WebApplication.CreateBuilder(args);
+*/
+
+
+// configure services
+var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
+builder.Services.AddRequestDecompression();
+builder.WebHost.ConfigureKestrel((context, options) =>
+{
+    options.ListenAnyIP(5001, listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
+        listenOptions.UseHttps(); // HTTP3 requires secure connection
+    });
+});
 var app = builder.Build();
 
-// The following enables HSTS and HTTPS redirection for security purposes
+// configure the HTTP pipeline
+
 if(!app.Environment.IsDevelopment())
 {
     app.UseHsts();
 }
+app.Use(async (HttpContext context, Func<Task> next) =>
+{
+    RouteEndpoint? rep = context.GetEndpoint() as RouteEndpoint;
+
+    if(rep is not null)
+    {
+        WriteLine($"Endpoint name: {rep.DisplayName}");
+        WriteLine($"Endpoint route pattern: {rep.RoutePattern.RawText}");
+    }
+    if(context.Request.Path == "/bonjour")
+    {
+        await context.Response.WriteAsync("Bonjour Monde!");
+        return;
+    }
+    await next();
+});
 app.UseHttpsRedirection();
-app.UseDefaultFiles();
+app.UseRequestDecompression();
+app.UseDefaultFiles(); // index.html, etc.
 app.UseStaticFiles();
 app.MapRazorPages();
-app.MapGet("/hello", () => "Hello World!");
 
+// start the web server
 app.Run();
 
-WriteLine("Web server has stopped.");*/
+WriteLine("Web server has stopped.");

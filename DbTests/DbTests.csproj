@@ -25,5 +25,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bank.Db\Bank.Db.csproj" />
+    <ProjectReference Include="..\Bank.DataContext.Sqlite\Bank.DataContext.Sqlite.csproj" />
   </ItemGroup>
 </Project>

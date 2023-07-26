@@ -1,11 +1,9 @@
 ﻿@page
 @model Bank.Web.Pages.LocationsModel
+<body style="background-color:lightcyan;"></body>
 <div class="row">
-    <h1 class="display-2">Locations</h1>
+    <h1 style="background-color:lightcyan"class="display-2">Branch Locations</h1>
     <table class="table">
-        <thead class="thead-inverse">
-            <tr><th>Branch Location</th></tr>
-        </thead>
         <tbody>
         @if(Model.Locations is not null)
         {
